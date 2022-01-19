@@ -72,8 +72,6 @@ public class StrandVerifier : MonoBehaviour
             }
         }
 
-        Debug.Log(_collectorStageIDArr);
-
         for (int i = 0; i < _collectorStageIDArr.Count; ++i)
         {
             bool isBreak = false;
