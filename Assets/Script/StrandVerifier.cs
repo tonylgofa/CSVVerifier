@@ -96,6 +96,52 @@ public class StrandVerifier : MonoBehaviour
             }
         }
 
+        for (int i = 1; i < LoadData.instance.mgameStageList.Count; ++i)
+        {
+            bool isBreak = false;
+            foreach((string, int) tempStage in _mGameStageIDArr)
+            {
+                if(tempStage.Item1 == LoadData.instance.mgameStageList[i]["StageID"].ToString())
+                {
+                    isBreak = true;
+                    break;
+                }
+            }
+            if (isBreak)
+            {
+                isBreak = false;
+                continue;
+            }
+            else
+            {
+                Debug.LogError("Quiz stage " + LoadData.instance.mgameStageList[i]["StageID"]+" not found in strand list");
+                ++totalError;
+            }
+        }
+
+        for (int i = 1; i < LoadData.instance.collectionStageList.Count; ++i)
+        {
+            bool isBreak = false;
+            foreach ((string, int) tempStage in _collectorStageIDArr)
+            {
+                if (tempStage.Item1 == LoadData.instance.collectionStageList[i]["stage_id"].ToString())
+                {
+                    isBreak = true;
+                    break;
+                }
+            }
+            if (isBreak)
+            {
+                isBreak = false;
+                continue;
+            }
+            else
+            {
+                Debug.LogError("Collector stage " + LoadData.instance.collectionStageList[i]["stage_id"] + " not found in strand list");
+                ++totalError;
+            }
+        }
+
         _mGameStageIDArr.Clear();
         _collectorStageIDArr.Clear();
         UIManager.instance.DisplayDone(totalError);

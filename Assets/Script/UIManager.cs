@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] Text URLText;
+    [SerializeField] Text versionText;
     public Text LoadingText;
 
     public static UIManager instance;
@@ -28,6 +29,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         URLText.text = Application.persistentDataPath;
+        versionText.text = "v" + Application.version;
     }
 
     // Update is called once per frame
