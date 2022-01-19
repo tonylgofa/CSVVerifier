@@ -15,8 +15,16 @@ public class CSVReader
     {
         var list = new List<Dictionary<string, object>>();
         //TextAsset data = new TextAsset();
-
-        string text = System.IO.File.ReadAllText(path);
+        string text;
+        try
+        {
+            text = System.IO.File.ReadAllText(path);
+        }
+        catch
+        {
+            Debug.LogError("Cannot read CSV. Please close any applications that is reading the file.");
+            text = "";
+        }
         
 
         /*

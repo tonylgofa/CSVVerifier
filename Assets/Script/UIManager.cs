@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     public Text LoadingText;
 
     public static UIManager instance;
+
+
     void Awake()
     {
         if (instance == null)
@@ -32,5 +34,10 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void DisplayDone(int totalError = 0)
+    {
+        LoadingText.text = "Done. " + totalError.ToString() + " errors found.";
     }
 }

@@ -38,13 +38,16 @@ public class MGameAnswerMediaVerifier : MonoBehaviour
                 }
             }
         }
+        int totalError = 0;
         for (int i = 0; i < _ansArr.Count; ++i)
         {
             if (Loader.instance.LoadFile(Application.persistentDataPath + "/MGameQuestionData/AnswerMedia/" + _ansArr[i].Item1 + ".png") == false)
             {
                 Debug.LogError(_ansArr[i].Item2 + 2 + " " + _ansArr[i].Item1);
+                ++totalError;
             }
         }
-        UIManager.instance.LoadingText.text = "Done";
+        _ansArr.Clear();
+        UIManager.instance.DisplayDone(totalError);
     }
 }
