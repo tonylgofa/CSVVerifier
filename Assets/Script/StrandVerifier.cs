@@ -21,6 +21,7 @@ public class StrandVerifier : MonoBehaviour
     public void CheckStrand()
     {
         string[] tempStageIDArr = new string[0];
+        int totalError = 0;
 
         for (int i = 0; i < LoadData.instance.strandList.Count; ++i)
         {
@@ -67,6 +68,7 @@ public class StrandVerifier : MonoBehaviour
             {
                 int index = _mGameStageIDArr[i].Item2 + 1;
                 Debug.LogError("quiz_stage_list id:" + index + " " + _mGameStageIDArr[i].Item1);
+                ++totalError;
             }
         }
 
@@ -92,7 +94,12 @@ public class StrandVerifier : MonoBehaviour
             {
                 int index = _collectorStageIDArr[i].Item2 + 1;
                 Debug.LogError("collector_stage_list id:" + index + " " + _collectorStageIDArr[i].Item1);
+                ++totalError;
             }
         }
+
+        _mGameStageIDArr.Clear();
+        _collectorStageIDArr.Clear();
+        UIManager.instance.DisplayDone(totalError);
     }
 }
